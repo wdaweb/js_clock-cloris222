@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body,
+        html {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+        }
+
+        .whitestars {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            position: absolute;
+            background: #fff;
+            filter:
+                drop-shadow(0 0 3px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 7px rgba(255, 255, 255, 0.6));
+            animation-name: whitetwinkle;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes whitetwinkle {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .bluestars {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            position: absolute;
+            background: rgb(162, 207, 251);
+            filter:
+                drop-shadow(0 0 3px rgba(162, 207, 251, 0.8)) drop-shadow(0 0 7px rgba(162, 207, 251, 0.6));
+            animation-name: bluetwinkle;
+            animation-duration: 2s;
+            animation-timing-function: ease;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes bluetwinkle {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        #outcircle {
+            width: 500px;
+            height: 500px;
+            border: 10px solid #455561;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: repeating-conic-gradient(from -.5deg, #455561 0deg 2deg, transparent 2deg 30deg);
+            -webkit-box-reflect: below -25px linear-gradient(transparent, rgba(31, 31, 31, 0.4));
+        }
+
+        #incircle {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #455561;
+            border-radius: 50%;
+        }
+
+        #incircle::before {
+            content: "";
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #455561;
+            border: 10px solid #7692a8;
+            border-radius: 50%;
+        }
+
+        #gearcard {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            left: 47%;
+            transform: translate(-50%, -50%);
+        }
+
+
+        /* 大齒輪 */
+        @keyframes gearbigmove {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #gearbig {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 128px;
+            left: 165px;
+            border-radius: 50%;
+            background: rgb(218, 182, 196);
+            animation-name: gearbigmove;
+            animation-duration: 60s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        #gearbig .center {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: #455561;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        #gearbig .gbtooth {
+            width: 26px;
+            height: 226px;
+            background: rgb(218, 182, 196);
+            position: absolute;
+            top: -13px;
+            left: 44%;
+        }
+
+        #gb_clock {
+            width: 170px;
+            height: 170px;
+            background-image: repeating-conic-gradient(from -2deg, rgb(218, 182, 196) 0deg 7deg, #455561 7deg 30deg);
+            border-radius: 50%;
+            position: absolute;
+            top: 36%;
+            left: 45%;
+            transform: translate(-50%, -50%);
+            z-index: 11;
+        }
+
+        #gb_clock::before {
+            content: "";
+            width: 120px;
+            height: 120px;
+            background: #455561;
+            border: 4px solid rgb(218, 182, 196);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #gb_clock::after {
+            content: "";
+            width: 45px;
+            height: 45px;
+            background: #455561;
+            border: 5px solid rgb(218, 182, 196);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #hourcard {
+            width: 30px;
+            height: 30px;
+            transform: rotate(180deg);
+            position: absolute;
+            top: 35px;
+            left: 58px;
+        }
+
+        #hour {
+            width: 5px;
+            height: 40px;
+            background: rgb(218, 182, 196);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 12;
+        }
+
+        #hournum {
+            font-size: 18px;
+            font-weight: 500;
+            color: rgb(218, 182, 196);
+            position: absolute;
+            top: 230px;
+            left: 266px;
+            transform: translate(-50%, -50%);
+            z-index: 14;
+        }
+
+        /* #hourarrow {
+            width: 6px;
+            height: 6px;
+            position: absolute;
+            top: 26px;
+            left: -1.5px;
+            background: lightblue;
+            transform: rotate(45deg);
+            z-index: 13;
+        }
+
+        #hourarrow::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: lightblue;
+            border-radius: 50%;
+            position: absolute;
+            top: -5%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+
+        #hourarrow::after {
+            content: "";
+            width: 6px;
+            height: 6px;
+            background: lightblue;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: -5%;
+            transform: translateX(-50%);
+        } */
+
+
+        /* #gearbig .gbtooth:nth-child(2) {
+            transform: rotate(36deg);
+        }
+
+        #gearbig .gbtooth:nth-child(3) {
+            transform: rotate(72deg);
+        }
+
+        #gearbig .gbtooth:nth-child(4) {
+            transform: rotate(108deg);
+        }
+
+        #gearbig .gbtooth:nth-child(5) {
+            transform: rotate(144deg);
+        }
+
+        #gearbig .gbtooth:nth-child(6) {
+            transform: rotate(180deg);
+        } */
+
+
+        /* 中齒輪 */
+        @keyframes gearmiddlemove {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(-360deg);
+            }
+        }
+
+        #gearmiddle {
+            width: 140px;
+            height: 140px;
+            position: absolute;
+            left: 58px;
+            top: 123px;
+            border-radius: 50%;
+            background: #aaa;
+            z-index: 12;
+            animation-name: gearmiddlemove;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        #gearmiddle .center {
+            width: 120px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #455561;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        #gm_clock {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 36%;
+            left: 78px;
+            background-image: repeating-conic-gradient(from 45deg, #aaa 0deg 2deg, #455561 2deg 30deg, #aaa 30deg 60deg);
+            border-radius: 50%;
+            z-index: 14;
+        }
+
+        #gm_clock::before {
+            content: "";
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #455561;
+            border: 3px solid #aaa;
+            border-radius: 50%;
+        }
+
+        #gm_clock::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #455561;
+            border: 3px solid #aaa;
+            border-radius: 50%;
+        }
+
+        #mincard {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 31px;
+            left: 28px;
+        }
+
+        #mincard::after {
+            content: "";
+            width: 23px;
+            height: 23px;
+            border: 2px solid #aaa;
+            border-radius: 50%;
+            position: absolute;
+            top: 48%;
+            left: -13%;
+            transform: translate(50%, -50%);
+            z-index: 14;
+        }
+
+        #min {
+            width: 5px;
+            height: 10px;
+            position: absolute;
+            top: -2px;
+            left: 56%;
+            transform: translateX(-50%);
+            background: #aaa;
+            z-index: 14;
+        }
+
+        #minnum {
+            font-size: 14px;
+            font-weight: 500;
+            color: #aaa;
+            position: absolute;
+            top: 187px;
+            left: 121px;
+            z-index: 14;
+        }
+
+        #gearmiddle .gmtooth {
+            width: 20px;
+            height: 164px;
+            background: #aaa;
+            position: absolute;
+            top: -12px;
+            left: 44%;
+        }
+
+        /* 小齒輪 */
+        @keyframes gearsmallmove {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #gearsmall {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 162px;
+            top: 34px;
+            border-radius: 50%;
+            background: #B47978;
+            animation-name: gearsmallmove;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+
+        #gearsmall .center {
+            width: 70px;
+            height: 70px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #455561;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        #gs_clock {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: repeating-conic-gradient(#B47978 0deg 10deg, #455561 2deg 20deg);
+            position: absolute;
+            left: 187.5px;
+            top: 59px;
+        }
+
+        #gs_clock::after {
+            content: "";
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid #B47978;
+            background: #455561;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #secnum {
+            font-size: 16px;
+            font-weight: 500;
+            color: #B47978;
+            position: absolute;
+            top: 75px;
+            left: 205px;
+            z-index: 14;
+        }
+
+        #gearsmall .gstooth {
+            width: 8px;
+            height: 120px;
+            background: #B47978;
+            position: absolute;
+            top: -10px;
+            left: 47%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <span class="stars"></span>
+        <div id="outcircle">
+            <div id="incircle">
+                <div id="gearcard">
+                    <div id="gearbig">
+                        <div class="center"></div>
+                        <div class="gbtooth"></div>
+                        <div class="gbtooth"></div>
+                        <div class="gbtooth"></div>
+                        <div class="gbtooth"></div>
+                        <div class="gbtooth"></div>
+                    </div>
+                    <div id="gb_clock">
+                        <div id="hourcard">
+                            <div id="hour"></div>
+                        </div>
+                    </div>
+                    <span id="hournum">0</span>
+
+                    <div id="gearmiddle">
+                        <div class="center"></div>
+                        <div class="gmtooth"></div>
+                        <div class="gmtooth"></div>
+                        <div class="gmtooth"></div>
+                        <div class="gmtooth"></div>
+                    </div>
+                    <div id="gm_clock">
+                        <div id="mincard">
+                            <div id="min"></div>
+                        </div>
+                    </div>
+                    <span id="minnum">0</span>
+                    <div id="gearsmall">
+                        <div class="center"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                        <div class="gstooth"></div>
+                    </div>
+                    <div id="gs_clock"></div>
+                    <span id="secnum">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gearbigtooth = document.querySelectorAll('.gbtooth')
+        const gearmiddletooth = document.querySelectorAll('.gmtooth')
+        const gearsmalltooth = document.querySelectorAll('.gstooth')
+
+        const gb_clock = document.getElementById('gb_clock')
+        const gm_clock = document.getElementById('gm_clock')
+        const gs_clock = document.getElementById('gs_clock')
+
+        const hournum = document.getElementById('hournum')
+        const minnum = document.getElementById('minnum')
+        const secnum = document.getElementById('secnum')
+
+
+
+        // 齒輪
+        gearbigtooth.forEach((value, index) => {
+            value.style.transform = `rotate(${parseInt(index) * 36}deg)`
+        })
+        gearmiddletooth.forEach((value, index) => {
+            value.style.transform = `rotate(${parseInt(index) * 45}deg)`
+        })
+        gearsmalltooth.forEach((value, index) => {
+            value.style.transform = `rotate(${parseInt(index) * 20}deg)`
+        })
+
+        // 時針轉動
+        setInterval(() => {
+            const date = new Date()
+
+            const hours = date.getHours()
+            const mins = date.getMinutes()
+            const secs = date.getSeconds()
+
+            gb_clock.style.transform = `rotate(${hours * 30}deg)`
+            gm_clock.style.transform = `rotate(${mins * 6}deg)`
+            gs_clock.style.transform = `rotate(${secs * 6}deg)`
+
+            let hoursletter = ''
+            if (hours == 0) {
+                hoursletter = "12"
+            } else if (hours < 10) {
+                hoursletter = "0" + hours
+            } else { hoursletter = hours };
+
+            let minsletter = ''
+            if (mins < 10) {
+                minsletter = "0" + mins
+            } else {
+                minsletter = mins
+            };
+
+            let secsletter = ''
+            if (secs < 10) {
+                secsletter = "0" + secs
+            } else {
+                secsletter = secs
+            };
+
+            hournum.innerText = `${hoursletter}`
+            minnum.innerHTML = `${minsletter}`
+            secnum.innerHTML = `${secsletter}`
+        });
+
+        // 星空
+        const screenW = document.documentElement.clientWidth;
+        const screenH = document.documentElement.clientHeight;
+
+        for (let i = 0; i <= 75; i++) {
+
+            let span = document.createElement(`span`)
+            span.className = 'whitestars'
+            document.body.appendChild(span)
+            let x = Math.random() * screenW
+            let y = Math.random() * screenH
+            span.style.left = `${x}px`;
+            span.style.top = `${y}px`;
+            span.style.zIndex = "0";
+            let scale = Math.random() * 1.5
+            span.style.transform = `scale(${scale})`
+            let rate = Math.random() * 7
+            span.style.animationDelay = `${rate}s`
+
+            // 參考作法
+            // var span = document.createElement('span');
+            // span.className = ('stars')
+            // document.body.appendChild(span);
+            // var x = parseInt(Math.random() * screenW);
+            // var y = parseInt(Math.random() * screenH);
+            // span.style.left = x + 'px';
+            // span.style.top = y + 'px';
+            // span.style.zIndex = "10";
+            // var scale = Math.random() * 1.5;
+            // span.style.transform = 'scale(' + scale + ', ' + scale + ')';
+
+        }
+
+        for (let i = 0; i <= 75; i++) {
+
+            let span = document.createElement(`span`)
+            span.className = 'bluestars'
+            document.body.appendChild(span)
+            let x = Math.random() * screenW
+            let y = Math.random() * screenH
+            span.style.left = `${x}px`;
+            span.style.top = `${y}px`;
+            span.style.zIndex = "0";
+            let scale = Math.random() * 1.5
+            span.style.transform = `scale(${scale})`
+            let rate = Math.random() * 7
+            span.style.animationDelay = `${rate}s`
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>
